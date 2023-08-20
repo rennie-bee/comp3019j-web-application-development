@@ -1,0 +1,262 @@
+.theme-default{
+    --light-body-bg-color:white;
+    --light-font-color:black;
+    --light-header-logo:url('../img/logo4.png');
+    --light-home-logo:url('../img/home.png');
+    --light-sub-color:gray;
+    --light-box-shadow:5px 5px 10px #485615;
+    --light-header-manage:#b0c364;
+    --light-in-color:#00ba9d;
+
+    --body-bg-color:var(--light-body-bg-color);
+    --font-color:var(--light-font-color);
+    --header-logo:var(--light-header-logo);
+    --home-logo:var(--light-home-logo);
+    --sub-color:var(--light-sub-color);
+    --box-shadow:var(--light-box-shadow);
+    --header-manage:var(--light-header-manage);
+    --form-color:var(--light-body-bg-color);
+    --input-color:var(--light-body-bg-color);
+    --in-color:#b0c364;
+    --in-color2:#b0c364;
+    --form-font-color:var(--light-font-color);
+    --border-color:#aaa;
+    --font-button:var(--light-body-bg-color);
+    --font-button2: #ffffff;
+    --comment:var(--light-font-color);
+    --alert: red;
+
+}
+.theme-dark{
+    --dark-body-bg-color:#1a1a1a;
+    --dark-font-color:#9e9e9e;
+    --dark-header-logo:url('../img/logo6.png');
+    --dark-home-logo:url('../img/home2.png');
+    --dark-sub-color: #535353;
+    --dark-box-shadow:5px 5px 10px #b1b296;
+    --dark-form-color:#444444;
+    --dark-in-color:#688883;
+    --dark-form-font:#b5b5b5;
+
+
+
+    --body-bg-color:var(--dark-body-bg-color);
+    --font-color:var(--dark-font-color);
+    --header-logo:var(--dark-header-logo);
+    --home-logo: var(--dark-home-logo);
+    --sub-color: var(--dark-sub-color);
+    --box-shadow: var(--dark-box-shadow);
+    --header-manage: var(--dark-body-bg-color);
+    --form-color: var(--dark-form-color);
+    --input-color: var(--dark-sub-color);
+    --in-color: var(--dark-in-color);
+    --in-color2: #545d30;
+    --form-font-color: var(--dark-form-font);
+    --border-color: var(--dark-sub-color);
+    --font-button:var(--dark-form-font);
+    --font-button2:var(--dark-form-font);
+    --comment: white;
+    --alert: #e05858;
+}
+*{ /*Overall page style*/
+    margin: 0;
+    padding: 0;
+    list-style-type: none;/*Eliminate default styles*/
+    text-decoration: none;
+}
+.header{ /*Overall effect of the navigation bar*/
+    height: 100px;
+    width: 100%;
+    margin-bottom: 50px;
+    background-color: var(--body-bg-color);
+
+}
+
+.login_register_area{
+    width: 100%;
+    border-bottom: 2px solid #c2c2c2;
+}
+.area{
+    float: right;
+    position: center;
+    margin-bottom: 10px;
+    width: 15%;
+}
+.area a{
+    color: var(--font-color);
+}
+.area li{
+    color: var(--font-color);
+}
+.login{
+    float: left;
+}
+.login a{
+    margin-right: 10px;
+    padding-right: 10px;
+    border-right: 2px solid #c2c2c2;
+    text-decoration: none;
+    color: var(--font-color);
+}
+.register1 a{
+    text-decoration: none;
+    color: var(--font-color);
+}
+.logo { /*Logo image in the navigation bar*/
+    height: 100px;
+    margin:0 auto;
+    width: 30%;
+    background-color: var(--body-bg-color);
+    text-align: center;
+    line-height: 100px;
+}
+.logo img{
+    content:var(--header-logo);
+    height: 100px;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+
+/*Style of navigation section starts*/
+.nav{
+    margin: 0 auto;
+    line-height: 80px;
+}
+ul.sonarmenu{
+    margin: 0 auto;
+    text-align: center;
+    list-style: none;
+    height: 100px;
+}
+/*Turn vertical navigation into horizontal by using li as an in-line element*/
+ul.sonarmenu li{
+    display: inline;
+}
+/*a represents the content of each navigation within the navigation bar*/
+ul.sonarmenu a{
+    position: relative;
+    display: inline-block;/*Keep elements on the same line, change to set width and height block elements*/
+    color: var(--font-color);
+    text-decoration: none;
+    margin: 20px 50px;/*Set the navigation content spacing*/
+    text-transform: uppercase;/*Set all text to upper case*/
+    font-family: 'Raleway', sans-serif; /*font setting*/
+    letter-spacing: 2px;
+}
+/*When the mouse is hovered or clicked over the navigation content*/
+ul.sonarmenu a:hover, ul.sonarmenu a:focus{
+    outline: none;
+    border-bottom: 2px solid #eee; /*lower border appears*/
+}
+
+/*Hover and click animation effects source code inspired by the web.
+URL: https://tympanus.net/Development/CreativeLinkEffects/
+Comments are based on my changes and understanding of the code*/
+
+/*Set the circle border dynamic effect when hovering or clicking on the navigation content*/
+/*Treat each navigation content as two containers and combine them to create the effect of a circle border.*/
+ul.sonarmenu a::before, ul.sonarmenu a:after{
+    position: absolute; /*Combine with display:block to make a as two containers*/
+    top: 50%; /*setting position*/
+    left: 50%;
+    border: 12px double rgba(0,0,0,0.1);  /*set double line border*/
+    border-radius: 50%;/*make borders two semicircles to be fitted together*/
+    content: '';
+    opacity: 0;/*Initially transparent, only visible when clicked or hovered over*/
+    /*Set the round border animation effect*/
+    /*The two semicircles spread out towards the x,y axes respectively, with increasing radius at the same time.*/
+    transform: translateX(-50%) translateY(-50%) scale(0.2);
+}
+/*Set a larger round border*/
+ul.sonarmenu a:after{
+    width: 60px;
+    height: 60px;
+    border-width: 6px; /*make border a circle*/
+    /*Set the round border animation effect*/
+    /*same as the smaller ones*/
+    transform: translateX(-50%) translateY(-50%) scale(0.8);
+}
+
+ul.sonarmenu a:hover:before, ul.sonarmenu a:hover:after{
+    /*Animation name-Animation one cycle time-Number of movements*/
+   animation: pulsate 1.2s infinite;/*Invoking circle borders animation effects*/
+}
+
+/*Prescribed circle borders animation*/
+/*The animation effect is set in 2 stages, with the values changing progressively between the two stages.*/
+/*Animated round border transparency and scaling animation effects*/
+@keyframes pulsate{
+
+    30%{ /*In the 30% process of animation*/
+        opacity: 1; /*Set to visible*/
+        transform: translateX(-50%) translateY(-50%) scale(1); /*The two semicircles spread out towards the x,y axes respectively, with increasing radius at the same time.*/
+    }
+
+    100%{/*at the end of animation*/
+        opacity: 0.3;/*Set opacity to 0.3*/
+       transform: translateX(-50%) translateY(-50%) scale(0.5); /*The two semicircles spread out towards the x,y axes respectively, with increasing radii at the same time.*/
+    }
+
+}
+/*Style of navigation section ends*/
+
+label {
+    cursor: pointer;
+    background-color: var(--form-color);
+    color: var(--form-font-color);
+}
+
+/*The style of IOS style switch button is referenced.
+Reference URL: https://www.html5tricks.com/css3-ios-switch-button.html
+ */
+.check {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: inline-block;
+    height: 40px;
+    width: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.switch {
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+.switch:checked ~ .indicator {
+    background: #7befb2;
+}
+.switch:checked ~ .indicator:after {
+    -webkit-transform: translate(40px, 0);
+    transform: translate(40px, 0);
+}
+.switch,
+.indicator {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+}
+.indicator {
+    background: #ececec;
+    transition: background 0.25s ease;
+}
+.indicator:after {
+    height: 30px;
+    width: 30px;
+    background: #fff;
+    content: '';
+    position: absolute;
+    border-radius: 100%;
+    top: 5px;
+    left: 5px;
+    transition: transform 0.25s ease;
+}

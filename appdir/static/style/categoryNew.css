@@ -1,0 +1,168 @@
+*{ /*Overall category page style*/
+    list-style-type: none; /*Eliminate default styles*/
+    text-decoration: none;
+    font-family: 'Raleway', sans-serif;
+}
+
+/*style of category column starts*/
+.listsum{ /*overall category column style*/
+    padding:10px;
+    width: 70%;
+    margin: 0 auto;
+    border: solid 1px #6e7a3e; /*border settings*/
+    border-radius: 10px;
+    box-shadow: var(--box-shadow);}
+
+.listsum .tit{/*overall title bar style*/
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    padding-bottom:10px;
+    border-bottom:1px solid #dddddd;
+}
+/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+.listsum .listsum-1{ cursor:pointer;
+}
+/*Each category*/
+.listsum .listsum-1 dt{
+    padding-left:15px;
+    font-size:20px;
+
+}
+.listsum .listsum-1 a{
+    color: var(--font-color);
+    transition-duration: 500ms;/*Progressive colour change effect*/
+    text-transform: capitalize;
+}
+
+/*Large categories and their sub-categories*/
+/*listhover is the class name of the dl tag when the category menu is expanded, corresponding to js*/
+.listsum .listhover dt{
+        padding-left:15px;
+        color:#333;
+        cursor:pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+}
+
+/*Specific categories*/
+/*on is the class name of the label when the category menu is expanded, corresponding to js*/
+.listsum .listsum-1 dl dt .on {
+    font-size:30px;
+    color: #606938;
+    text-decoration:none;}
+.listsum .listsum-1 dl dt a:hover {color: #606938;}/*Text changes colour when hovering over large categories*/
+
+/*Specific sub-categories*/
+/*Initially, when no large categories are expanded, the dd tags of the small categories are not displayed*/
+.listsum .listsum-1 dd{ display:none; padding-left:16px;}
+
+/*After expanding the large category, the dl tag class of the large category is changed to listhover,
+and the dd tag of the small category is displayed as a block-level element
+ */
+.listsum .listhover dd{ display:block;margin-left: 0;}
+
+/*Sub-categories under the broad category*/
+.listsum .listsum-1 dd ul{margin: 0;padding: 0;}
+.listsum .listsum-1 dd ul li{/*each sub-category*/
+    height: 38%;
+    width: 24%;
+    margin:4px 0px;
+    background: #f1f1f1;
+    display:inline-grid;/*Grid layout with width to control that only four sub-categories can be displayed in a row*/
+}
+.listsum .listsum-1 dd ul li a{/*Text setting for sub-categories*/
+    font-family: 'Raleway', sans-serif;
+    padding:10px 4px;
+    display:inline-block;
+    text-align: center;
+    color:#8f8f8f;
+    font-size: 20px;}
+
+/*Set new style when the mouse hovers or clicks on the subcategory text*/
+.listsum .listsum-1 dd ul li a:hover,.listsum .listsum-1 dd ul li a.onlinked{
+    height:40px; line-height:40px;/*Set the height range of the colour change box*/
+    padding:0px 4px;
+    display:inline-block;
+    color:#b0c364; /*Text changes color*/
+    background-color:#e6ca9a;/*Background colour change*/
+    text-decoration:none;
+}
+.listsum .listsum-1 dd .clear{clear: both;}/*Clear float*/
+
+#myBtn,#myBtn2,#myBtn3,#myBtn4,#myBtn5,#myBtn6,#myBtn7,#myBtn8{/*add sort button*/
+    font-weight: 600;
+    margin: auto;
+    padding: 0.7em 0.7em;
+    font-size: .5em;
+    letter-spacing: 2px;
+    cursor: pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+    background: #b0c364;
+    color: #fff;
+    border: 1px solid transparent;
+    font-family: 'Poiret One', cursive;
+}
+
+
+/*style of modal box starts*/
+.modal { /*Modal box*/
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%; /* full width */
+    height: 100%; /* full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+.modal-header h2{
+    background-color: var(--form-color);
+    color: var(--form-font-color);
+}
+.modal-footer{
+    background-color: var(--form-color);
+}
+.addForm{
+    width: 40%;
+    margin: 0 auto;
+}
+.modal-content{ /*Content of modal box*/
+    position: relative;
+    margin: auto;
+    padding: 3.5vw;
+    border: none;
+    box-sizing: border-box;
+    border-left: 4px solid #b0c364;
+    flex-wrap: wrap;/*Split rows or columns when necessary*/
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+    background-color: var(--form-color);
+    text-align: center;
+}
+
+.modal-content button {/*Submit and Cancel button*/
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid #aaa;
+    font-family: 'Poiret One', cursive;
+    color: var(--form-font-color);
+    background-color: var(--in-color);
+}
+.modal-content input {/*Input boxes in modal box*/
+    border: none;
+    flex-basis: 100%;/*Specify the initial length of the input box*/
+    margin-bottom: 1.5em;
+    clear: both;/*clear the float*/
+    background-color: var(--input-color);
+}
+.modal-body{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background-color: var(--form-color);
+}
+.modal-body{
+    color: var(--form-font-color);
+}
+/*style of modal box ends*/

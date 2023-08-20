@@ -1,0 +1,261 @@
+body{
+    margin: 0;
+    padding: 0;
+}
+.preloader { /*Setting global page styles*/
+    background-color: #b0c364;
+    width: 100%;  /*Full page coverage*/
+    height: 100%;
+    position: fixed;
+    }
+.logo{ /*div of logo and h3*/
+    height:53px;
+    width:30%;
+    background-color: rgba(255, 255, 255, 0);
+    float: left;
+    text-align: center;
+    line-height: 53px;
+    border-right: 1px solid black;
+}
+h3 { /*Set fade animation for h3*/
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    text-transform: uppercase; /*Set all text in h3 to upper case*/
+    font-weight: 400; /*Bolded font*/
+    text-align: center; /*text centering*/
+    font-size: 25px;
+    color: #ffffff;
+    /*Animation name-Animation one cycle time-Movement curve-Number of movements*/
+    animation: pulse 2.5s linear infinite; /*Invoking text animation effects*/
+}
+/*Prescribed text animation*/
+/*The animation effect is set in three stages, with the values changing progressively between the two stages.*/
+@keyframes pulse {
+     0% { /*Transparency of 0.05 at the start*/
+         opacity: 0.05; }
+     50% {/*Deepens to 1 halfway through the movement*/
+         opacity: 1; }
+     100% { /*Continues to become transparent to 0.05 until the end of a cycle*/
+         opacity: 0.05; } }
+
+/*Pan animation effect source code inspired by the web
+URL: http://www.mobanwang.com/mb/201912/17340.html
+Comments are based on my changes and understanding of the code*/
+#cooking {
+    position: relative;
+    margin: 0 auto;
+    top: 0;
+    width: 50vh;
+    height: 50vh;
+    overflow: hidden; /*Clear the float so that the height of the outermost cooking box is propped up against the child elements*/
+}
+/*There are 5 bubbles,
+and each bubble is animated using the nth-child element.
+ */
+#cooking .bubble { /*Overall set of 5 bubble styles*/
+    position: absolute;
+    border-radius: 100%;/*Set bubble box to round*/
+    box-shadow: 0 0 0.25vh #2b2b2b; /*x offset|y offset|shadow blur radius|shadow colour*/
+    opacity: 0; /*Initially a transparent invisible circle*/
+}
+#cooking .bubble:nth-child(1) {
+    margin-top: 2.5vh; /*Set the initial position and size of the bubble 1*/
+    left: 58%;
+    width: 2.5vh;
+    height: 2.5vh;
+    background-color: #232323;
+    /*Animation name-Animation one cycle time-Speed profile for controlled changes-Number of movements*/
+    animation: bubble 2s cubic-bezier(0.53, 0.16, 0.39, 0.96) infinite;/*Invoking bubble animation effects*/
+}
+#cooking .bubble:nth-child(2) {
+    margin-top: 3vh; /*Set the initial position and size of the bubble 2*/
+    left: 52%;
+    width: 2vh;
+    height: 2vh;
+    background-color: #1b1b1b;
+    /*Animation name-Animation one cycle time-Animation starts and ends at low speed-Start time-Number of movements*/
+    animation: bubble 2s ease-in-out .35s infinite; /*Invoking bubble animation effects*/
+}
+#cooking .bubble:nth-child(3) {
+    margin-top: 1.8vh; /*Set the initial position and size of the bubble 3*/
+    left: 50%;
+    width: 1.5vh;
+    height: 1.5vh;
+    background-color: #111111;
+    /*Animation name-Animation one cycle time-Speed profile for controlled changes-Start time-Number of movements*/
+    animation: bubble 1.5s cubic-bezier(0.53, 0.16, 0.39, 0.96) 0.55s infinite; /*Invoking bubble animation effects*/
+}
+#cooking .bubble:nth-child(4) {
+    margin-top: 2.7vh;/*Set the initial position and size of the bubble 4*/
+    left: 56%;
+    width: 1.2vh;
+    height: 1.2vh;
+    background-color: #090909;
+    /*Animation name-Animation one cycle time-Speed profile for controlled changes-Start time-Number of movements*/
+    animation: bubble 1.8s cubic-bezier(0.53, 0.16, 0.39, 0.96) 0.9s infinite; /*Invoking bubble animation effects*/
+}
+#cooking .bubble:nth-child(5) {
+    margin-top: 2.7vh;/*Set the initial position and size of the bubble 5*/
+    left: 63%;
+    width: 1.1vh;
+    height: 1.1vh;
+    background-color: #020202;
+    /*Animation name-Animation one cycle time-Animation starts and ends at low speed-Start time-Number of movements*/
+    animation: bubble 1.6s ease-in-out 1s infinite; /*Invoking bubble animation effects*/
+}
+/*Prescribed bubble animation*/
+/*The animation effect is set in three stages, with the values changing progressively between the two stages.*/
+/*Animates the scaling, transparency and position of the bubble in one cycle*/
+@keyframes bubble {
+    0% { /*at the start of the animation*/
+        transform: scale(0.15, 0.15);/*Scaling bubble by 0.15 times the initial xy value*/
+        top: 80%; /*Set inital Position*/
+        opacity: 0; /*Set to transparent*/
+    }
+    50% { /*Halfway through the animation*/
+        transform: scale(1.1, 1.1);/*Scaling bubble by 1.1 times the initial xy value*/
+        opacity: 1; /*Transparency becomes 1*/
+    }
+    100% {/*at the end of the animation*/
+        transform: scale(0.33, 0.33);/*Scaling bubble by 0.3 times the initial xy value*/
+        top: 60%;/*Position changing*/
+        opacity: 0; /*Set to transparent*/
+    } }
+
+#cooking #area {
+    position: absolute;/*Setting the position and size of the whole area of animation*/
+    bottom: 0;
+    right: 0;
+    width: 50%;
+    height: 50%;
+    background-color: transparent;
+    /*Set up animations to simulate the action when frying*/
+    transform-origin: 15% 60%;/*Set the x,y percentile position as the base position*/
+    /*Animation name-Animation one cycle time-Animation starts and ends at low speed-Number of movements*/
+    animation: flip 2.1s ease-in-out infinite; }/*Invoking bubble animation effects*/
+
+/*Prescribed pan animation*/
+/*The animation effect is set in seven stages, with the values changing progressively between the two stages.*/
+/*The animation implements a 3D change along the axis in one cycle*/
+@keyframes flip {
+    0% {/*at the start of the animation*/
+        transform: rotate(0deg); }
+    5% {/*In the 5% process of an animation*/
+        transform: rotate(-27deg); }
+    30%,
+    50% { /*In the 30% & 50% process of an animation*/
+        transform: rotate(0deg); }
+    55% {/*In the 55% process of an animation*/
+        transform: rotate(27deg); }
+    83.3% {/*In the 83.3% process of an animation*/
+        transform: rotate(0deg); }
+    100% {/*at the end of the animation*/
+        transform: rotate(0deg); } }
+
+/*Pan and its handle*/
+#cooking #area #sides {
+    position: absolute; /*Setting the position and size of the whole area of pan*/
+    width: 100%;
+    height: 100%;
+    transform-origin: 15% 60%;/*Set the x,y percentile position as the base position*/
+    /*Animation name-Animation one cycle time-Animation starts and ends at low speed-Number of movements*/
+    animation: switchSide 2.1s ease-in-out infinite; }/*Invoking bubble animation effects*/
+
+/*Prescribed pan animation*/
+/*The animation effect is set in three stages, with the values changing progressively between the two stages.*/
+/*The animation implements a 3D change along the Y-axis in one cycle*/
+@keyframes switchSide {
+    0% {/*at the start of the animation*/
+        transform: rotateY(0deg); /*Defines the 3D rotation along the Y-axis.*/
+    }
+    50% {/*Halfway through the animation*/
+        transform: rotateY(180deg); /*Defines the 3D rotation along the Y-axis.*/
+    }
+    100% {/*at the end the animation*/
+        transform: rotateY(0deg);/*Defines the 3D rotation along the Y-axis.*/
+    } }
+
+/*pan handle*/
+#cooking #area #sides #handle {
+    position: absolute; /*Setting the position and size of the whole area of handle*/
+    bottom: 18%;
+    right: 80%;
+    width: 35%;
+    height: 20%;
+    background-color: transparent;
+    border-top: 1vh solid #111111;/*Construct the shape of the handle using the rotation, scaling and radius settings*/
+    border-left: 1vh solid transparent;
+    border-radius: 100%;
+    transform: rotate(20deg) rotateX(0deg) scale(1.3, 0.9);/*Defines the 3D rotation along the axis.*/
+}
+/*pan*/
+#cooking #area #sides #pan {
+    position: absolute; /*Setting the position and size of the whole area of pan*/
+    bottom: 20%;
+    right: 30%;
+    width: 50%;
+    height: 8%;
+    background-color: #111111;
+    border-radius: 0 0 1.4em 1.4em; /*Construct the shape of the pan using the radius settings*/
+    transform-origin: -15% 0;/*Set the x,y percentile position as the base position*/
+    /*-15% X at the curvature of the bottom of the pan*/
+}
+/*pancake*/
+#cooking #area #pancake {
+    position: absolute;/*Setting the position and size of the whole area of pancake*/
+    top: 24%;
+    width: 100%;
+    height: 100%;
+    transform: rotateX(85deg);/*Defines the 3D rotation along the X-axis.*/
+    /*Animation name-Animation one cycle time-Animation starts and ends at low speed-Number of movements*/
+    animation: jump 2.1s ease-in-out infinite;/*Invoking pancake animation effects*/
+}
+/*Prescribed pancake animation*/
+/*The animation effect is set in 5 stages, with the values changing progressively between the two stages.*/
+@keyframes jump {
+    0% {/*at the start of animation*/
+        top: 24%;
+        transform: rotateX(85deg); }
+    25% {/*In the 25% process of animation*/
+        top: 10%;
+        transform: rotateX(0deg); }
+    50% {/*Halfway through the animation*/
+        top: 30%;
+        transform: rotateX(85deg); }
+    75% {/*In the 75% process of animation*/
+        transform: rotateX(0deg); }
+    100% {/*at the end of animation*/
+        transform: rotateX(85deg); } }
+/*pastry*/
+#cooking #area #pancake #pastry {
+    position: absolute;/*Setting the position and size of the whole area of pastry*/
+    bottom: 26%;
+    right: 37%;
+    width: 40%;
+    height: 45%;
+    background-color: #111111;
+    box-shadow: 0 0 3px 0 #111111;
+    border-radius: 100%; /*implement the shape of a pastry*/
+    transform-origin: -20% 0; /*Set the x,y percentile position as the base position*/
+    /*Animation name-Animation one cycle time-Animation starts and ends at low speed-Number of movements*/
+    animation: fly 2.1s ease-in-out infinite; /*Invoking pastry animation effects*/
+}
+/*Prescribed pastry animation*/
+/*The animation effect is set in 5 stages, with the values changing progressively between the two stages.*/
+/*The animation implements 3D changes and position changes along the X-axis, giving the pastry a 3D animation effect by an arc*/
+@keyframes fly {
+    0% {/*at the start of animation*/
+        bottom: 26%;
+        transform: rotate(0deg); }
+    10% {/*In the 10% process of animation*/
+        bottom: 40%; }
+    50% {/*Halfway through the animation*/
+        bottom: 26%;
+        transform: rotate(-190deg); }
+    80% {/*In the 80% process of animation*/
+        bottom: 40%; }
+    100% {/*at the end of animation*/
+        bottom: 26%;
+        transform: rotate(0deg); } }
+

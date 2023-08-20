@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Title</title>
+    <link rel="stylesheet" href="../../static/style/login.css">
+</head>
+<body>
+
+{% extends "base-navigation.html" %} <!--Inherited navigation bar template-->
+{% block content %}
+<!--Login Page-->
+    <h1>Sign In</h1>
+    <div class="w3ls-login">
+
+        <form action="" method="post" novalidate><!--Login Form-->
+            {{ form.hidden_tag() }}
+            <!--Connect with the back end and use wtform to determine if the input matches the specification-->
+            <table style="background-color: var(--form-color)">
+                <tr>
+                    <td>{{ form.username.label(class='in')}}</td>
+                    <td>{{ form.username(size=32)  }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label(class='in')}}</td>
+                    <td>{{ form.password(size=32) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        {% for message in get_flashed_messages() %}
+                            <p id="alert">{{ message }}</p>
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+            <div class="agile_label">
+                <input type="reset" value="Register"  onclick="location.href='/register'"><!--Jump to the register page-->
+                {{ form.submit() }}<!--Submit logging in-->
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+</body>
+</html>

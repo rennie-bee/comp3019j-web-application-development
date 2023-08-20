@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html class="theme-default" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="../static/style/navigation.css"><!--Importing css files-->
+    <script src="../static/js/jquery-3.5.1.js"></script>
+    <script>
+        //Switch themes of the whole page
+        //The function was referenced from a tutorial
+        //Reference URL: https://www.jb51.net/css/730663.html
+        function theme(themeName){
+            localStorage.setItem('theme', themeName);
+            document.documentElement.className=themeName;
+        }
+        function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-default'){
+                theme('theme-dark');
+            }else{
+                theme('theme-default');
+            }
+        }
+        (function () {
+            if (localStorage.getItem('theme') === 'theme-default') {
+                theme('theme-default');}
+            if (localStorage.getItem('theme') === 'theme-dark') {
+                theme('theme-dark');
+            }
+
+        })();
+
+    </script>
+</head>
+<body>
+<!--Define a fixed navigation bar template-->
+<!--navigation bar-->
+<div class="header">
+    <div class="login_register_area">
+{#        The style of IOS style switch button is referenced.#}
+{#        Reference URL: https://www.html5tricks.com/css3-ios-switch-button.html#}
+    <div class="check">
+        <input type="checkbox" class="switch"  onclick="toggleTheme()" value="Cheap">
+        <div class="indicator"></div>
+    </div>
+        <div class="area">
+            {% if session.get('USERNAME') != None %}<!--User login verification-->
+            <!--If the user is logged in, display username and give permission to add recipes-->
+            <li >Welcome <a href="#"><strong>{{ session.get('USERNAME') }}</strong></a></li>
+            <li style="text-decoration: none"><a style="text-decoration: none" href="/add">Settings</a> / <a style="text-decoration: none" href="{{ url_for('auth.logout') }}">Log Out</a></li>
+            {% else %}
+            <!--If user is a visitor, user can only preview the Add Recipe screen if user has successfully logged in.-->
+                <div class="login">
+                    <a href="{{ url_for('auth.login') }}">Login</a>
+                </div>
+                <div class="register1">
+                    <a href="{{ url_for('auth.register') }}">Register</a>
+                </div>
+            {% endif %} <!--End if judgement-->
+
+        </div>
+    </div>
+    <div class="logo">
+        <img src=""/>
+    </div>
+
+    <div class="nav"> <!--main content of Navigation bar-->
+        <ul class="sonarmenu">
+            <li style="font-size: 22px"><a href="/main_page">MainPage</a></li>
+            <li style="font-size: 22px"><a href="/categories">Categories</a></li>
+            <li style="font-size: 22px"><a href="{{ url_for('main.recipe_page', sort='all') }}">Recipes</a></li>
+            <li style="font-size: 22px"><a href="/add">Add</a></li>
+        </ul>
+    </div>
+
+</div>
+<!--Has the same effect as removal of suspension-->
+<div style="height: 100px"></div>
+
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+            <script>
+              var messages = {{ messages | safe }};
+              for (var i=0; i<messages.length; i++) {
+                alert(messages[i]);
+              }
+            </script>
+    </ul>
+    {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %} <!--Sub-template content filling-->
+<div class="foot" style="margin-top: 200px"> <!--Bottom of the page Show developer information-->
+    <div class="info" style="background-color: #262421;height: 350px;font-size: 15px;color: white">
+        <div style="background: #262421">
+            <img src="../static/img/foot.png" style="background:#262421;height: 50px;margin:5% 0% 0% 5%">
+        </div>
+        <p style="background:#262421;margin:-2% 0% 0% 8%" >Contact master:</p>
+        <p style="background: #262421;margin-left: 8%">13051702828@163.com</p>
+    </div>
+    <div STYLE="background-color: #46433d;height: 150px">
+    </div>
+</div>
+</body>
+</html>

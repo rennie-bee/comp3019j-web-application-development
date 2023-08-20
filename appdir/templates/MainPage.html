@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html class="theme-default" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisine master-lazy cook</title>
+    <link rel="stylesheet" href="../static/style/Main.css">
+</head>
+<body>
+
+
+{% extends "base-navigation.html" %} <!--Inherited navigation bar template-->
+{% block content %}
+<!--Advertising display board-->
+<div class="banner">
+    <div style="position: relative;align-items: center; display: flex; justify-content: center;">
+        <!--toggle keys-->
+        <div class="arrow arrow-left" onclick="prev()"></div>
+        <div class="arrow arrow-right" onclick="next()"></div>
+        <!--Photos of the initial display-->
+        <img id="demo1" src="../static/img/banner1.png">
+        <!--Clickable circles below the photo-->
+        <ul class="indexes">
+            <!--Each li corresponds to an image, the first photo is initially displayed so the first li is active-->
+            <li class="active"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+</div>
+    <script>
+        {#Show latter image.Stops execution of the function when switching to the last or first picture#}
+        function next() {
+            index++
+            if(index === 4) index = 0
+            clearInterval(timer)
+            setStyle()
+            run()
+        }
+        {#Show previous image#}
+        {#Stops execution of the function when switching to the last or first picture#}
+
+        function prev() {
+            index--
+            if(index === -1) index = 3
+            clearInterval(timer)
+            setStyle()
+            run()
+        }
+       {#Below are links to the address of the image#}
+       {#Four images forming an array.#}
+       {#Call the system method to find the class name and set the initial picture to the first object of the array, i.e. the first picture#}
+       {##}
+       {#Using a for loop,#}
+       {#set the images to index values one by one,in the order of the images, and activate the li where that image is located.#}
+
+        let arr = [
+            "../static/img/banner1.png",
+            "../static/img/banner2.png",
+            "../static/img/banner3.png",
+            "../static/img/banner4.png"
+        ]
+        var demo1 = document.getElementById('demo1')
+        let indexes = document.getElementsByClassName('indexes')[0].children
+        let timer = -1
+        for (let i = 0; i < indexes.length; i++) {
+            indexes[i].onmouseenter = function () {
+                index = i
+                clearInterval(timer)
+                setStyle()
+            }
+            indexes[i].onmouseleave = function () {
+                run()
+            }
+        }
+        var index = 0
+        {#When switching to the last or first photo, the diagram will not change automatically#}
+        {#Switch to the next picture every 1500 ms until you have switched to the first or last picture#}
+        function run() {
+            timer = setInterval(() => {
+                index++
+                if(index === 4) index = 0
+                setStyle()
+            }, 1500);
+        }
+        function setStyle() {
+            demo1.src = arr[index]
+
+            let active = document.getElementsByClassName('active')[0]
+            active.classList.remove('active')
+            indexes[index].classList.add("active")
+        }
+        run()
+    </script>
+{% endblock %}
+
+</body>
+</html>

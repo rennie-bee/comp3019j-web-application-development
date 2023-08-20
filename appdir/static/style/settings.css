@@ -1,0 +1,286 @@
+* { padding:0; margin:0; outline:0;    font-family: 'Bahnschrift SemiBold', 'Consolas', cursive; }/*Overall settings page style*/
+body {
+    font-family: Verdana, Arial, sans-serif;
+    line-height:20px;
+    color:var(--font-color);
+    background-color: var(--bg);
+}
+/*Overall content box*/
+#shell {
+    width:85%;
+    margin:0 auto;/*Keep content centred*/
+    margin-left: 15%;
+    padding:9px;
+    border-top:0;
+    background:var(--header-bg);
+}
+
+#header {
+    background-color: var(--bg); /*background image*/
+    height:74px;
+    padding:0 15px;
+}
+#logo1{
+    content:var(--header-logo1);
+}
+
+#logo2{
+    content:var(--header-logo2);
+}
+/*Style of header(logo and welcome parts)*/
+#header .right{
+    width:300px;
+    text-align: right;/*Right alignment of text*/
+    font-size:11px;
+    color:#fffac8;
+    padding-top:4px;
+}
+#header .right p {
+    padding-top:8px;
+}
+/*Text style of user info*/
+#header .right p a{
+    color:#fffac8;
+    text-decoration: underline;/*Underline below the username to highlight*/
+}
+/*Underline cancelled when mouse hovered over username*/
+#header .right p a:hover{
+    text-decoration: none;
+}
+/*Navigation part of header*/
+#header .right p.small-nav{
+    color:#fff;
+}
+#header .right p.small-nav a{
+    color:#fff;
+    text-decoration: none;
+}
+#header .right p.small-nav a:hover{
+    color:#fffac8;/*Text changes colour when the mouse is hovered over the navigation*/
+}
+
+/*User info of header*/
+.right {
+    float:right;/*Float right so that each element is on the same line*/
+    display:inline;/*Turn vertical navigation into horizontal by transforming into in-line element*/
+}
+/*All navigations with links*/
+a {
+    color:#d96a02;
+    text-decoration: none;
+    cursor:pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+}
+/*When the mouse hovers over a navigation with links, the navigation changes colour*/
+a:hover { color:#81693c; }
+
+/*Style of h1*/
+h1 {
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    margin-top: 20px;
+    padding-bottom:8px;
+    font-size:25px;
+    line-height:30px;
+}
+
+/*Style of table starts*/
+#content { padding:0 0;}
+table.dataTable {
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 5%;
+    border-collapse: collapse;/*The borders will merge into a single border*/
+}
+.dataTable ,.dataTable2 {
+    background:var(--header-bg);
+    padding-bottom: 10px;
+    margin-top: 30px;
+    text-align: center;
+    border-collapse: collapse;/*The borders will merge into a single border*/
+}
+.dataTable h2,.dataTable2 h2{
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+/*Style of table head*/
+table.dataTable th.dataTableHeader {
+    color: #fff;
+    background-color: var(--form-1);
+    padding: 5px;
+    border: #fff 1px solid;
+    text-align: left;
+}
+/*Style of table content*/
+table.dataTable td {
+    padding: 5px;
+    border-style: solid;
+    text-align: left;
+    font-size: 20px;
+    border-width: 1px 1px 0 1px;
+    border-color: #ccc #fff #ccc #fff;/*Setting border*/
+}
+/*Style of text in table content*/
+table.dataTable {
+    border-bottom: 1px solid #fff;
+}
+table.dataTable td a {
+    padding-right: 5px;
+}
+/*Different styles for separate rows Even and odd rows*/
+/*Odd rows*/
+table.dataTable tr.odd_row {
+    background-color:var(--form-2);
+}
+/*Even rows*/
+table.dataTable tr.even_row {
+    background-color: var(--form-3);
+}
+/*When the mouse hovers or clicks on the contents of the table, the row changes colour*/
+table.dataTable tr.odd_row:hover,
+table.dataTable tr.even_row:hover {
+    background-color: #FFD900;
+}
+
+table td input{
+    background: white;
+}
+/*Style of table ends*/
+
+
+/*Styles of form starts*/
+.add{
+    text-align: center;
+    margin-top:30px;
+}
+.add h2{
+    font-size: 30px;
+}
+.porduct-order-agile {
+    width:34%;
+    padding: 2.5em 3em 3em;
+    margin: 0em auto;
+    text-align: left;
+    border-left: 4px solid #b0c364;
+    box-shadow: -2px 7px 37px 8px rgba(0,0,0,0.52);/*Setting the shadow effect for the form*/
+    background: var(--form-color);
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+/*Style of input box*/
+.form-group input[type="text"] {
+    width: 100%;
+    color: #000;
+    outline: none;
+    font-size: 14px;
+    padding: .6em 1em;
+    margin: 10px 0px 9px;
+    border: 1px solid #000;
+    appearance: none;/*Removing the default style*/
+    display: inline-block;
+    background: rgb(255, 255, 255);
+    box-sizing: border-box;
+}
+/*Text style in the form*/
+.form-group p{
+    color: var(--in-color);
+    font-size: 20px;
+    letter-spacing: .5px;
+    text-transform: capitalize;/*Each word in the text begins with an uppercase letter*/
+}
+/*Style of submit button*/
+button[type=submit] {
+    width: 100%;
+    background: var(--in-color);
+    outline: none;
+    color: var(--font-button);
+    margin: 19px 0px 0px;
+    font-size: 15px;
+    font-weight: 400;
+    border: none;
+    padding: 10px 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.5s all;
+}
+
+/*Text will change colour when the mouse hovers over it*/
+button[type=submit]:hover{
+    background:#000;
+    color:#fff;}
+/*Style of form ends*/
+
+
+.box {/*The div box where the recipe display area is located*/
+    width: 100%; /*size*/
+    margin-top: 50px;
+    background-color: gray;
+}
+
+.right { /*Overall recipes area*/
+    float: right; /*Float to the right*/
+    width: 100%;
+    min-height:450px;
+    height: auto;/*The height of ul can be adjusted according to the number of child li elements,
+    with the minimum height being the height of one li=400px*/
+
+}
+.right li {/*each recipe*/
+    width: 23%;/*size*/
+    background-color: palegoldenrod;
+    float: left;/*float to the left*/
+    margin-left: 2%;/*Spacing between recipes*/
+    margin-bottom: 14px;
+}
+.right li img{
+    height:300px;
+}
+/*Show text above the recipe when hovering over it*/
+li:hover .wz{
+    display: block;/*display as block which can show above the image*/
+    cursor: pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+    transition: all 0.5s;
+}
+.wz{/*detailed description for each recipe*/
+    width: 19%;
+    height: 200px;
+    position: absolute;
+    margin: -200px 0px;
+    background-color: rgba(0,0,0,0.3);
+    display: none; /*Hidden default*/
+    overflow: hidden;/*If the given width and height properties are exceeded, then the text will be hidden and will not occupy space.*/
+    transition: all 0.5s;
+}
+.wz p{/*specific text*/
+    width: 23%;
+    height: 200px;
+    font-size: 18px;
+    line-height: 30px;
+    color: #fff;
+    margin: 0px 10px;
+    display: block; /*display as block which can show above the image*/
+    overflow: hidden; /*If the given width and height properties are exceeded, then the text will be hidden and will not occupy space.*/
+    clear: both; /*Clear the float*/
+}
+/*Clear the float so that the end of the page can link to the end of the recipe line*/
+.clear{ clear:both}
+/*Style of recipes display box end*/
+
+.tag{
+    margin: 0 auto;
+    margin-top:30px;
+    margin-bottom: 30px;
+}
+.tag a{
+    text-transform: uppercase;
+    display: inline-block;
+    padding: 4px 10px;
+    margin-bottom: 7px;
+    margin-right: 4px;
+    border-radius: 4px;
+    color: var(--font-color);
+    border: 1px solid #ccc;
+    font-size :11px;
+}
+.tag a:hover {
+     border: 1px solid #000;
+ }

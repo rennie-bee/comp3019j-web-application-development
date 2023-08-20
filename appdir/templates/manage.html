@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisine Monster</title>
+    <meta name="theme-color" content="#ffc91d"/>
+    <link rel="stylesheet" href="../static/style/Main.css">
+    <link rel="stylesheet" href="../static/style/settings.css">
+    <script src="../static/js/jquery-3.5.1.js"></script>
+    <link href="../static/style/profile.css" rel="stylesheet" type="text/css"/>
+
+</head>
+<body>
+        <div class="dataTable" >
+            <h2>All Recipes</h2>
+            <!--all recipes-->
+        {% if session.get('USERNAME') != None %}
+    <div class="box">
+        <ul class="right">
+            {% for r in user.recipes %}
+                <li>
+                    <img src="{{ r.recipe_image_route }}" style="width: 100%">
+                    <div class="wz">
+                        <a href="{{ url_for('main.recipe_detail', id=r.id) }}">
+                            <p style="background: transparent">{{ r.recipe_name }}</p>
+                        </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+        {% endif %}
+    <div class="clear"></div><!--Set to clear float so that the end of the page can link to the end of the recipe line-->
+        </div>
+
+        <div class="dataTable2" >
+            <h2>All Sub-sorts</h2>
+            {% if session.get('USERNAME') != None %}
+            <div class="tag">
+                {% for s in user.sub_sorts %}
+                    <a href="{{ url_for('main.recipe_page', sort=s.sub_sort_name) }}" class="tag-cloud-link">
+                        {{ s.sub_sort_name }}
+                    </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+</body>
+</html>

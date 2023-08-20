@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisine master-lazy cook</title>
+    <link rel="stylesheet" href="../static/style/Main.css">
+    <link rel="stylesheet" href="../static/style/recipe.css">
+</head>
+<body>
+
+
+{% extends "base-navigation.html" %}<!--Inherited navigation bar template-->
+{% block content %}
+
+    <img src="../static/img/head_receipe.png" style="margin-top:20px;width: 100%">
+    <div class="navi">
+        <p><a href="/main_page"><img src="../static/img/home.png" style="height: 20px">&nbspMAIN PAGE</a>
+            > <a href="{{ url_for('main.recipe_page', sort='all') }}">ALL RECIPES</a>
+            {% if sort != 'all' %}
+                > <a href="{{ url_for('main.recipe_page', sort=sort) }}">{{ sort }}</a>
+            {% endif %}
+        </p>
+    </div>
+
+    <!--all recipes-->
+    <div class="box">
+        <ul class="right">
+            {% for r in recipe_list %}
+                <li>
+                    <img src="{{ r.recipe_image_route }}" style="width: 100%;height: 400px">
+                    <div class="wz">
+                        <a href="{{ url_for('main.recipe_detail', id=r.id) }}">
+                            <p style="background: transparent">{{ r.recipe_name }}</p>
+                        </a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+    <div class="clear"></div><!--Set to clear float so that the end of the page can link to the end of the recipe line-->
+{% endblock %}
+
+</body>
+</html>

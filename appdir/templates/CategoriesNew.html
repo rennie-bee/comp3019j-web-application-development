@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisine master-lazy cook</title>
+    <link rel="stylesheet" href="../static/style/Main.css">
+    <link rel="stylesheet" href="../static/style/categoryNew.css">
+
+    <script type="text/javascript" src="../static/js/jquery-3.5.1.js"></script>
+    <!--    <script type="text/javascript" src="../static/js/modal.js"></script>-->
+    <script type="text/javascript">
+
+      {#The menu is expanded and contracted by changing the class value of the box #}
+      {#  in which the size menu is located, in conjunction with css styles#}
+        $(function(){
+            $(".listsum-1 dt").click(function(){ <!--parent of dt is dl-->
+                <!--Toggle style on click-->
+                $(this).parent().toggleClass("listhover");<!--Assigning a value to the class of a dl tag-->
+                $(this).find("a").toggleClass("on"); <!--Assign a class to the a tag on-->
+            });
+        });
+
+    </script>
+
+</head>
+<body>
+{% extends "base-navigation.html" %}<!--Inherited navigation bar template-->
+{% block content %}
+    <img src="../static/img/head_category.png" style="margin-top:20px;width: 100%">
+    <div class="navi">
+        <p><a href="/main_page"><img src="../static/img/home.png" style="height: 20px">&nbspMAIN PAGE</a>
+            > <a href="">ALL SORTS</a>
+
+        </p>
+    </div>
+    <!--Category column-->
+    <div class="listsum" id="categoryListSum">
+        {% if sort1 != None %}
+            <div class="listsum-1" data-link="#"><!--Catrgory1-->
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="" hidefocus="true">Staple food</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category1-->
+                    <div id="myModal" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a New Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="staple">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                <!-- Sub-category of category1-->
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 1 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort1 %}
+                                <li><a href="{{ url_for('main.recipe_page', sort=s.sub_sort_name) }}"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <!--Clearing the float allows the height of the dd to increase as the li increases, same below-->
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort2 != None %}
+            <div class="listsum-1"
+                 data-link="#"><!--Category 2-->
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="" href="#"
+                           hidefocus="true">Snacks</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn2">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 2-->
+                    <div id="myModal2" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="snack">
+                                    Name:<input type="text" name="sub_sort"></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close2">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 2 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort2 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort3 != None %}
+            <div class="listsum-1"
+                 data-link="#">
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="sum1" href="#"
+                           hidefocus="true">Different nationalities/cultures</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn3">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 3-->
+                    <div id="myModal3" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="culture">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close3">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 3 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort3 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort4 != None %}
+            <div class="listsum-1"
+                 data-link="#">
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="sum1" href="#"
+                           hidefocus="true">Drinks</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn4">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 4-->
+                    <div id="myModal4" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                        <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="drink">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close4">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 4 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort4 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort5 != None %}
+            <div class="listsum-1"
+                 data-link="#">
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="sum1" href="#"
+                           hidefocus="true">By production difficulty</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn5">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 5-->
+                    <div id="myModal5" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="difficulty">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close5">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 5 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort5 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort6 != None %}
+            <div class="listsum-1"
+                 data-link="#">
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="sum1" href="#"
+                           hidefocus="true">By dish taste</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn6">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 6-->
+                    <div id="myModal6" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="taste">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close6">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 6 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort6 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort7 != None %}
+            <div class="listsum-1"
+                 data-link="#">
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="sum1" href="#"
+                           hidefocus="true">By production time</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn7">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 7-->
+                    <div id="myModal7" class="modal">
+                        <form class="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="time">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close7">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 7 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort7 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+
+        {% if sort8 != None %}
+            <div class="listsum-1"
+                 data-link="#">
+                <dl class=""><!--Empty class names to enable dynamic assignment of values to js-->
+                    <dt>
+                        <!--Empty class names to enable dynamic assignment of values to js-->
+                        <a class="" href="#"
+                           hidefocus="true">By Production Process</a>
+                        <!--User verification, only logged in users can dd subcategories-->
+                        {% if session.get('USERNAME') != None %}
+                            <button id="myBtn8">Add Sub-Sort</button>
+                        {% endif %}
+                    </dt>
+                    <!--modal box for category 8-->
+                    <div id="myModal8" class="modal">
+                        <form name="addForm" method="POST" action="http://127.0.0.1:5000/categories">
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Add a Sub-Category</h2>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="hidden" name='up_sort' value="process">
+                                    Name:<input type="text" name="sub_sort">
+                                </div>
+                                <div class="modal-footer">
+                                    <button id="close8">Cancel</button>
+                                    <button type="submit">Submit</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <dd>
+                        <ul><!--Using jinja2 to read subcategory 8 data from the back-end database and implement a front-to-back segment connection-->
+                            {% for s in sub_sort8 %}
+                                <li><a href="#"
+                                       class="" >{{ s.sub_sort_name }}</a>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                    </dd>
+                </dl>
+            </div>
+        {% endif %}
+    </div>
+    <script>
+        // Get the modal
+        // Get the button that opens the modal
+        // Get the button that closes the modal
+        // When the user clicks the button, open the modal
+        // When the user clicks on cancel, close the modal
+        // When the user clicks anywhere outside of the modal, close it
+
+        {% if sort1 != None %}
+            var modal = document.getElementById('myModal');
+            var btn = document.getElementById("myBtn");
+            var span = document.getElementById("close");
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort2 != None %}
+            var modal2 = document.getElementById('myModal2');
+            var btn2 = document.getElementById("myBtn2");
+            var span2 = document.getElementById("close2");
+            btn2.onclick = function() {
+                modal2.style.display = "block";
+            }
+            span2.onclick = function() {
+                modal2.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal2) {
+                    modal2.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort3 != None %}
+            var modal3 = document.getElementById('myModal3');
+            var btn3= document.getElementById("myBtn3");
+            var span3 = document.getElementById("close3");
+            btn3.onclick = function() {
+                modal3.style.display = "block";
+            }
+            span3.onclick = function() {
+                modal3.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal3) {
+                    modal3.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort4 != None %}
+            var modal4 = document.getElementById('myModal4');
+            var btn4 = document.getElementById("myBtn4");
+            var span4 = document.getElementById("close4");
+            btn4.onclick = function() {
+                modal4.style.display = "block";
+            }
+            span4.onclick = function() {
+                modal4.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal4) {
+                    modal4.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort5 != None %}
+            var modal5 = document.getElementById('myModal5');
+            var btn5 = document.getElementById("myBtn5");
+            var span5 = document.getElementById("close5");
+            btn5.onclick = function() {
+                modal5.style.display = "block";
+            }
+            span5.onclick = function() {
+                modal5.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal5) {
+                    modal5.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort6 != None %}
+            var modal6 = document.getElementById('myModal6');
+            var btn6 = document.getElementById("myBtn6");
+            var span6 = document.getElementById("close6");
+            btn6.onclick = function() {
+                modal6.style.display = "block";
+            }
+            span6.onclick = function() {
+                modal6.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal6) {
+                    modal6.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort7 != None %}
+            var modal7 = document.getElementById('myModal7');
+            var btn7 = document.getElementById("myBtn7");
+            var span7 = document.getElementById("close7");
+            btn7.onclick = function() {
+                modal7.style.display = "block";
+            }
+            span7.onclick = function() {
+                modal7.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal7) {
+                    modal7.style.display = "none";
+                }
+            }
+        {% endif %}
+
+        {% if sort8 != None %}
+            var modal8 = document.getElementById('myModal8');
+            var btn8 = document.getElementById("myBtn8");
+            var span8 = document.getElementById("close8");
+            btn8.onclick = function() {
+                modal8.style.display = "block";
+            }
+            span8.onclick = function() {
+                modal8.style.display = "none";
+            }
+            window.onclick = function(event) {
+                if (event.target == modal8) {
+                    modal8.style.display = "none";
+                }
+            }
+        {% endif %}
+    </script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>Cuisine Monster</title>
+		<link rel="stylesheet" type="text/css" href="../static/style/Main.css" />
+        <link href="../static/style/details.css" rel="stylesheet">
+
+	</head>
+
+	<body>
+
+    {% extends "base-navigation.html" %} <!--Inherited navigation bar template-->
+    {% block content %}
+
+        <img src="../static/img/head_details.png" style="margin-top:20px;width: 100%">
+        <div class="navi">
+        <p><a href="/main_page"><img src="../static/img/home.png" >&nbspMAIN PAGE</a>
+            > <a href="{{ url_for('main.recipe_page', sort='all') }}">RECIPES</a>
+            > Recipe Details
+        </p>
+        </div>
+        <div class="recipe">
+            <h1>{{ recipe.recipe_name }}</h1>
+            <div class="picture">
+                <img src={{ recipe.recipe_image_route }}>
+            </div>
+            <div class="post-author">
+                <a href="">By {{ recipe.author.username }}</a>
+                {% if recipe.author.username == session.get('USERNAME')  %}
+                    <a href="{{ url_for('main.recipe_delete', id=recipe.id) }}" onclick="if(confirm('Are you sure you want to delete this recipe')===false)return false;">DELETE</a>
+                {% endif %}
+            </div>
+            <div class="cate">
+
+            </div>
+            <div class="detail1">
+            <div class="description">
+            <h2>Recipe Description</h2>
+            </div>
+                <blockquote class="blockquote">
+                    <h5 class="mb-30">{{ recipe.recipe_description }}</h5>
+                </blockquote>
+                <div class="description">
+                    <h2>Recipe Categories</h2>
+                </div>
+                <blockquote class="blockquote">
+                <div class="tag">
+                    {% for s in recipe.sorts %}
+                        <a href="{{ url_for('main.recipe_page', sort=s.sub_sort_name) }}" class="tag-cloud-link">
+                            {{ s.sub_sort_name }}
+                        </a>
+                    {% endfor %}
+                </div>
+                </blockquote>
+            </div>
+
+            <div class ="detail2">
+            <div class="step">
+                <h2>Steps</h2>
+            </div>
+{#                The style of timeline was referenced from a open source code#}
+{#                Reference URL: https://gitcode.net/mirrors/Chien-W/Personal-home-page?utm_source=csdn_github_accelerator#}
+                <ul class="steps">
+                    {% for step in step_list %}
+                        <li>{{ step }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div style="clear: both"></div>
+        <div class="container">
+        <h2>Comments section</h2>
+            <div class="comment-list" id="commentList">
+                {% for c in comment_list %}
+                    <div class="comment">
+                        <div class="comment-content">
+                            <p class="comment-content-name">{{ c.author.username }}</p>
+                            <p class="comment-content-article">{{ c.body }}</p>
+                            <p class="comment-content-footer">
+                                <span class="comment-content-footer-id"></span>
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            {% if session.get('USERNAME') != None %}
+                <div style="clear: both"></div>
+                <div class="comment-send">
+                    <form action="{{ url_for('main.recipe_detail', id=recipe.id) }}" method="post">
+                        <textarea class="comment-send-input" name="comment" cols="80" rows="5" placeholder="Comment......"></textarea>
+                        <input class="comment-send-button" type="submit" value="Post a comment">
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+        <div style="clear: both"></div>
+
+    {% endblock %}
+	</body>
+
+</html>

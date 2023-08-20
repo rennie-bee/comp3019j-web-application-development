@@ -1,0 +1,79 @@
+*{ /*Overall main page style*/
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /*Eliminate default styles*/
+    text-decoration: none;
+    background-color: var(--body-bg-color);
+
+}
+#demo1{
+    width: 100%;
+    height: auto;
+}
+.navi{
+    margin:2% 2% 2% 10%;
+}
+.navi img{
+    height: 25px;
+    content: var(--home-logo);
+}
+.navi p{
+    text-decoration: none;
+    font-size: 20px;
+    color: var(--sub-color);
+}
+.navi a{
+    font-size: 20px;
+    color: var(--font-color);
+}
+.navi a:hover{
+    color: #b0c364;
+}
+/*style of advertising display board starts*/
+/*Photo switching animation animation effect source code inspired by the web
+URL: https://blog.csdn.net/qq_43078424/article/details/103375038
+Comments are based on my changes and understanding of the code*/
+.indexes{/*Clickable circles below the photo*/
+    height: 20px;
+    background: none;
+    display: flex; /*Flexible layout for lateral alignment of circles*/
+    position: absolute;
+    bottom: 10px;
+}
+/*each clickable circle*/
+.indexes li{
+    background: var(--body-bg-color);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; /*set the shape as a circle*/
+    margin: 0 3px; /*Clickable circles spacing setting*/
+}
+/*When the li tag represented by the circle is activated, the circle turns green*/
+.indexes li.active{
+    background: #b0c364;
+}
+.banner{
+    margin-top:20px;
+}
+/*Toggle keys on both sides of the photo*/
+.arrow{
+    width: 30px; /*set size, position and background color*/
+    height: 50px;
+    background: #b0c364;
+    position: absolute;
+}
+/*Toggle key on the left side of the photo*/
+.arrow.arrow-left{
+    left: 0px;
+}
+/*Toggle key on the right side of the photo*/
+.arrow.arrow-right{
+    right: 0px;
+}
+/*style of advertising display board ends*/
+
+
+
+
+
+

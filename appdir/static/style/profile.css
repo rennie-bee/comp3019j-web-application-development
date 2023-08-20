@@ -1,0 +1,173 @@
+.theme-default{
+    --light-header-bg:white;
+    --light-header-logo1:url('../img/logo5.png');
+    --light-header-logo2:url('../img/logo2.png');
+    --light-bg:#b0c364;
+    --light-font-color:gray;
+    --light-in-color:#00ba9d;
+    --light-form-1:#925005;
+    --light-form-2:#e4f2fb;
+    --light-form-3: #f8f8f8;
+
+    --header-bg:var(--light-header-bg);
+    --header-logo1:var(--light-header-logo1);
+    --header-logo2:var(--light-header-logo2);
+    --bg:var(--light-bg);
+    --font-color: var(--light-font-color);
+    --form-color:var(--light-header-bg);
+    --in-color:var(--light-in-color);
+    --form-1:var(--light-form-1);
+    --form-2:var(--light-form-2);
+    --form-3: var(--light-form-3);
+
+
+}
+.theme-dark{
+    --dark-header-bg: #484848;
+    --dark-header-logo1:url('../img/logo7.png');
+    --dark-header-logo2:url('../img/logo.png');
+    --dark-bg: #797979;
+    --dark-font-color: #c3c3c3;
+    --dark-form-color:#444444;
+    --dark-in-color:#688883;
+    --dark-form-1:#63584b;
+    --dark-form-2: #7a8188;
+    --dark-form-3: #b0b0b0;
+
+    --header-bg:var(--dark-header-bg);
+    --header-logo1:var(--dark-header-logo1);
+    --header-logo2:var(--dark-header-logo2);
+    --bg: var(--dark-bg);
+    --font-color: var(--dark-font-color);
+    --form-color: var(--dark-form-color);
+    --in-color: var(--dark-in-color);
+    --form-1:var(--dark-form-1);
+    --form-2:var(--dark-form-2);
+    --form-3:var(--dark-form-3)
+}
+*, *:before, *:after{
+    box-sizing: border-box;
+}
+a{ color: #c40b00; }
+
+.wrap{ max-width: 1000px; }
+
+/*Style of sidebar was referenced from a open source code*/
+/*Reference URL:https://gitcode.net/mirrors/Chien-W/Personal-home-page?utm_source=csdn_github_accelerator*/
+.sidebar{
+    top: 0;
+    left: 0;
+    bottom: 0;
+    color: #fff;
+    width: 15%;
+    position: fixed;
+    overflow: hidden;
+    overflow-y: auto;
+    background: #4b4b4b;
+}
+
+.sidebar .avatar{
+    margin: 2em 2em;
+    border-radius: 100%;
+    border: #fff 5px solid;
+    transition: transform 0.5s;/*Animation of avator*/
+}
+.sidebar .avatar:hover{
+    transform: rotate(1turn);
+}
+.sidebar .avatar img{
+    border-radius: 100%;
+}
+img{
+    height: auto;
+    max-width: 100%;
+    vertical-align: middle;
+}
+
+/* -- Sidebar navigation */
+.sidebar .nav{
+    margin: 0;
+    display: flex;
+    list-style: none;
+    flex-direction: column;
+}
+.sidebar .nav a{
+    color: #fff;
+    padding: 1em;
+    display: block;
+    text-align: center;
+    transition: background .3s, box-shadow .3s;
+}
+.sidebar .nav a:hover{
+    background: rgba(0, 0, 0, .2);
+}
+
+main{
+}
+
+main section{
+    padding: 5em 0;
+    position: relative;
+}
+
+#skills{ background: #f8bd24; }
+
+
+.title{
+    margin-bottom: 1em;
+}
+
+/*The style of IOS style switch button is referenced.
+Reference URL: https://www.html5tricks.com/css3-ios-switch-button.html
+ */
+.check {
+    margin: 0 auto;
+    margin-top: 20px;
+    height: 40px;
+    width: 80px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.switch {
+    z-index: 2;
+    opacity: 0;
+    cursor: pointer;
+}
+.switch:checked ~ .indicator {
+    background: #7befb2;
+}
+.switch:checked ~ .indicator:after {
+    -webkit-transform: translate(40px, 0);
+    transform: translate(40px, 0);
+}
+.switch,
+.indicator {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+}
+.indicator {
+    background: #ececec;
+    transition: background 0.25s ease;
+}
+.indicator:after {
+    height: 30px;
+    width: 30px;
+    background: #fff;
+    content: '';
+    position: absolute;
+    border-radius: 100%;
+    top: 5px;
+    left: 5px;
+    transition: transform 0.25s ease;
+}
+
+

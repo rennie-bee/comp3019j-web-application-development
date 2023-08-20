@@ -1,0 +1,62 @@
+* {/*Overall recipe page style*/
+    margin: 0;
+    padding: 0;
+}
+/*Style of recipes display box starts*/
+li {
+    list-style: none;/*Eliminate default styles*/
+}
+.box {/*The div box where the recipe display area is located*/
+    width: 100%; /*size*/
+    margin-top: 50px;
+    background-color: gray;
+}
+
+.right { /*Overall recipes area*/
+    float: right; /*Float to the right*/
+    width: 100%;
+    min-height:450px;
+    height: auto;/*The height of ul can be adjusted according to the number of child li elements,
+    with the minimum height being the height of one li=400px*/
+
+}
+.right li {/*each recipe*/
+    width: 23%;/*size*/
+    height: 400px;
+    background-color: palegoldenrod;
+    float: left;/*float to the left*/
+    margin-left: 2%;/*Spacing between recipes*/
+    margin-bottom: 14px;
+}
+/*Show text above the recipe when hovering over it*/
+li:hover .wz{
+    display: block;/*display as block which can show above the image*/
+    cursor: pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+    transition: all 0.5s;
+}
+.wz{/*detailed description for each recipe*/
+    width: 23%;
+    height: 200px;
+    position: absolute;
+    margin: -200px 0px;
+    background-color: rgba(0,0,0,0.3);
+    display: none; /*Hidden default*/
+    overflow: hidden;/*If the given width and height properties are exceeded, then the text will be hidden and will not occupy space.*/
+    transition: all 0.5s;
+}
+.wz p{/*specific text*/
+    width: 23%;
+    height: 200px;
+    font-size: 18px;
+    line-height: 30px;
+    color: #fff;
+    margin: 0px 10px;
+    display: block; /*display as block which can show above the image*/
+    overflow: hidden; /*If the given width and height properties are exceeded, then the text will be hidden and will not occupy space.*/
+    clear: both; /*Clear the float*/
+}
+/*Clear the float so that the end of the page can link to the end of the recipe line*/
+.clear{ clear:both}
+/*Style of recipes display box end*/
+
+

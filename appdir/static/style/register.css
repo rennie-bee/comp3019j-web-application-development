@@ -1,0 +1,153 @@
+* {
+    font-family: 'Bahnschrift SemiBold', 'Consolas', cursive;
+     font-size: 20px;
+    background-color: var(--body-bg-color);
+}
+
+a {
+    margin-left: 4%;
+    text-decoration: none;
+}
+
+body {/*Overall login page style*/
+    font-size: 100%;
+    width: 100%;
+    height: auto;
+    background-size: cover;
+}
+.w3ls-login {/*Overall login box*/
+    display: flex;/*flex layout & justify-content to make login box centered*/
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+h1 {/*title*/
+    font-size: 3.2em; /*font setting*/
+    font-weight: 300;
+
+    color: var(--font-color);
+    text-shadow: 1px 1px 1px #000;
+    letter-spacing: 3px;
+    padding: 1.3em 1vw;
+    text-align: center;
+    text-transform: capitalize;/*Text in all capital letters*/
+}
+#alert{
+    color:var(--alert);
+    background-color: var(--form-color);
+}
+.w3ls-login form {/*login form*/
+    position: relative;/*style settings*/
+    max-width: 700px;
+    margin: 0 5vw;
+    padding:4% 5% 4% 5%;
+    border: none;
+    box-sizing: border-box;
+    background-color: var(--form-color);
+    border-left: 4px solid #b0c364;
+    display: -webkit-flex;
+    flex-wrap: wrap;/*Elastic box to remove rows when necessary*/
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.3);
+}
+
+.in {/*Title of input box*/
+    font-size: 24px;
+    color: var(--in-color);
+    float: left;/*Float to the left*/
+    font-weight: 600;/*bond font*/
+    text-transform: capitalize;/*Text in all capital letters*/
+    letter-spacing: 2px;
+}
+
+
+.in i {/*Text of title*/
+    font-size: 1.1em;
+    margin-right: 3px;
+    color: #363af4;
+}
+
+.w3ls-login input[type="text"]{/*Text type input box*/
+   /*Basic settings*/
+    color: #aaa;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    appearance: none;/*Removing the default style*/
+    background: var(--input-color);
+
+}
+tr{
+    height: 70px;
+    background-color: var(--form-color);
+}
+td{
+background-color: var(--form-color);
+}
+.w3ls-login input[type="password"] {/*Password type input box*/
+    /*Basic settings*/
+    color: #aaa;
+    font-size: 15px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    padding: 15px;
+    box-sizing: border-box;
+    border: 1px solid var(--border-color);
+    appearance: none; /*Removing the default style*/
+    background: var(--input-color);
+}
+
+label.check {
+    float: none;
+    color: #aaa;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.agile_label {/*Choose whether to stay logged in or not*/
+    background-color: var(--form-color);
+    text-align: center;
+    float: left; /*Float to the left*/
+    margin: 0 auto;
+    width: 100%;
+}
+
+.w3ls-login input[type=reset]{ /*Reset button*/
+    color: var(--form-font-color);
+    font-weight: 600;
+    width: 40%;
+    margin: auto;
+    margin-top: 3em;
+    padding: 0.7em 0;
+    font-size: .9em;
+    letter-spacing: 2px;
+    cursor: pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+    background: var(--in-color);
+    border: 1px solid transparent;
+}
+table{
+    margin: 0 auto;
+}
+.w3ls-login input[type=submit] {/*Submit Button*/
+    color: var(--font-button);
+    font-weight: 600;
+    margin: auto;
+    margin-top: 3em;
+    padding: 0.7em 3em;
+    font-size: .9em;
+    letter-spacing: 2px;
+    cursor: pointer;/*When the mouse is hovering over the recipe area, set the shape of the mouse to a hand with an outstretched index finger*/
+    background: var(--in-color);
+    border: 1px solid transparent;
+}
+/*Change colour when mouse is hovered over*/
+.w3ls-login input[type=reset]:hover,
+.w3ls-login input[type=submit]:hover {
+    border: 1px solid #00ba9d;
+    color: #00ba9d;
+    background: transparent;
+}
+

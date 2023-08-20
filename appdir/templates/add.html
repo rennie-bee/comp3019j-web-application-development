@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cuisine master-lazy cook</title>
+    <link rel="stylesheet" href="../static/style/Main.css">
+    <link rel="stylesheet" href="../static/style/settings.css">
+    <link href="../static/style/profile.css" rel="stylesheet" type="text/css"/>
+    <script src="../static/js/jquery-3.5.1.js"></script>
+</head>
+<body>
+<!--User settings page (recipes can be added)-->
+<!--Header-->
+            <div class="add"><!--Add new recipe-->
+                <h2>Add New Recipe</h2>
+                <div class="porduct-order-agile">
+                    {% if session.get('USERNAME') != None %}
+                    <form action="http://127.0.0.1:5000/add" method="post" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <p>Recipe Title</p>
+                            <input type="text" id="user" name="name" required="">
+                        </div>
+                        <div class="form-group">
+                            <p>Upload image</p>
+                            <!--Here javascript is used so that photos can be previewed for the user on the front page-->
+                            <input type="file" onchange="showImg()" id="img_file" name="image"><br>
+                            <img src="" alt="" id="img_id" style="width: 300px">
+                        </div>
+                        <div class="form-group">
+                            <p>Recipe Description</p>
+                            <textarea type="text" name="description" style="max-width: 100%"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <p>Steps<input type="button" value="add" onClick="add()" /></p>
+                            <div id="step">
+                                <input type="text" name="step" required="">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <p>Category</p>
+                            <div style="margin-top: 10px">
+                                {% for s in sort %}
+                                    <input type="checkbox" name="cb" value="{{ s.sub_sort_name }}"> {{ s.sub_sort_name }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                        <div>
+                            {% for message in get_flashed_messages() %}
+                                <p id="alert">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+
+
+<script>
+    {#js used so that photos can be previewed for the user on the front page#}
+    {#The code to change src value of image was referenced from the Internet.
+    Comments are based on my changes and understanding of the code.
+    URL:https://blog.csdn.net/TinaTxt/article/details/70171737#}
+    function showImg(){
+        <!--Find user uploaded photos with Id and save the address as 'file'-->
+        var file =  document.getElementById('img_file').files[0];
+        <!--Read the image by reading the URL address of image-->
+        var re = new FileReader();
+        re.readAsDataURL(file);
+        <!--Change the attribution of image-->
+        <!--Returns the target node of the event (the node that triggered the event), in this case uploading a photo-->
+        re.onload = function(re){
+            $('#img_id').attr("src", re.target.result);
+        }
+    }
+
+    //Reference URL:https://www.iteye.com/blog/mywebcode-1863293
+    function add() {
+        var input1 = document.createElement('input');
+        var btn = document.getElementById('step');
+        input1.setAttribute('type', 'text');
+        input1.setAttribute('name', 'step');
+        // btn.insertBefore(input1,null);
+        var del = document.createElement("input")
+        del.setAttribute("type", "button")
+        del.setAttribute("value","delete")
+
+        var br = document.createElement("br");
+
+        btn.appendChild(input1)
+        btn.appendChild(del)
+        btn.appendChild(br)
+
+        del.onclick = function () {
+            btn.removeChild(input1)
+            btn.removeChild(del)
+            btn.removeChild(br)
+        }
+    }
+
+        let cb = $('[name="cb"]');
+        cb.change(function () {
+        if (this.checked && cb.filter(':checked').length > 3) this.checked = false;
+    })
+
+
+</script>
+</div>
+</body>
+</html>

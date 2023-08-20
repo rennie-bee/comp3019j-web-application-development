@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html class="theme-default" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link rel="stylesheet" href="../static/style/Main.css">
+    <link rel="stylesheet" href="../static/style/settings.css">
+    <link href="../static/style/profile.css" rel="stylesheet" type="text/css"/>
+    <script src="../static/js/jquery-3.5.1.js"></script>
+    <script>
+        function a(url){
+            $.get(url,function(data){
+                $("#main").html(data)
+            });
+
+        }
+
+        $(document).ready(function () {
+            $.get('/addnew',function(data){
+                $("#main").html(data)
+            });
+        });
+
+            //Switch themes of the whole page
+            //The function was referenced from a tutorial
+            //Reference URL: https://www.jb51.net/css/730663.html
+            function theme(themeName){
+            localStorage.setItem('theme', themeName);
+            document.documentElement.className=themeName;
+        }
+            function toggleTheme() {
+            if (localStorage.getItem('theme') === 'theme-default'){
+            theme('theme-dark');
+        }else{
+            theme('theme-default');
+        }
+        }
+            (function () {
+            if (localStorage.getItem('theme') === 'theme-default') {
+            theme('theme-default');}
+            if (localStorage.getItem('theme') === 'theme-dark') {
+            theme('theme-dark');
+        }
+
+        })();
+
+    </script>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+            <script>
+              var messages = {{ messages | safe }};
+              for (var i=0; i<messages.length; i++) {
+                alert(messages[i]);
+              }
+            </script>
+    </ul>
+    {% endif %}
+    {% endwith %}
+</head>
+<body>
+<div id="shell">
+<aside class="sidebar">
+    <div style="text-align: center;margin: 0 auto;padding-top: 20px">
+        <p></p>
+        <p>Welcome </p>
+        <p><a><strong>{{ session.get('USERNAME') }}</strong></a></p>
+    </div>
+    <div class="avatar">
+        <img src="../static/img/a2.jpg" title="Chien_W"/>
+    </div>
+    <nav class="nav">
+        <a href="/main_page">Main Page</a>
+        <a href="#" onclick="a('/manage')">Manage Recipes & Subsorts</a>
+        <a href="#" onclick="a('/addnew')">Add New Recipes</a>
+    </nav>
+    <div class="check">
+        <input type="checkbox" class="switch"  onclick="toggleTheme()" value="Cheap">
+        <div class="indicator"></div>
+    </div>
+</aside>
+    <div id="header">
+        <img id="logo1" style="height: 74px;margin-left: 0%" src="../static/img/logo5.png"/>
+        <img id="logo2" style="height: 74px;float: right" src="../static/img/logo2.png"/>
+    </div>
+    <div id="main">
+    </div>
+{#{% block content %}{% endblock %} <!--Sub-template content filling-->#}
+</div>
+</body>
+</html>
